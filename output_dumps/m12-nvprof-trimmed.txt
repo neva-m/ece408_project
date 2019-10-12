@@ -1,0 +1,23 @@
+...
+✱ Running nvprof python m1.2.py
+Loading fashion-mnist data... done
+==264== NVPROF is profiling process 264, command: python m1.2.py
+Loading model... done
+New Inference
+EvalMetric: {'accuracy': 0.8154}
+==264== Profiling application: python m1.2.py
+==264== Profiling result:
+Type            Time(%)  Time      Calls       Avg       Min       Max  Name
+GPU activities: 32.06%   35.522ms     20  1.7761ms  1.1200us  33.192ms  [CUDA memcpy HtoD]
+                18.03%   19.978ms      1  19.978ms  19.978ms  19.978ms  volta_scudnn_128x64_relu_interior_nn_v1
+                17.26%   19.125ms      4  4.7812ms  4.7794ms  4.7843ms  volta_gcgemm_64x32_nt
+                 8.64%   9.5744ms      4  2.3936ms  1.9974ms  3.1196ms  void fft2d_c2r_32x32<float, bool=0, bool=0, unsigned int=0, bool=0, bool=0>(float*, float2 const *, int, int, int, int, int, int, int, int, int, float, float, cudnn::reduced_divisor, bool, float*, float*, int2, int, int)
+                 7.19%   7.9640ms      1  7.9640ms  7.9640ms  7.9640ms  volta_sgemm_128x128_tn
+                 6.56%   7.2673ms      2  3.6336ms  25.184us  7.2421ms  void op_generic_tensor_kernel<int=2, float, float, float, int=256, cudnnGenericOp_t=7, cudnnNanPropagation_t=0, cudnnDimOrder_t=0, int=1>(cudnnTensorStruct, float*, cudnnTensorStruct, float const *, cudnnTensorStruct, float const *, float, float, float, float, dimArray, reducedDivisorArray)
+                 5.78%   6.4042ms      4  1.6010ms  1.2587ms  2.0346ms  void fft2d_r2c_32x32<float, bool=0, unsigned int=0, bool=0>(float2*, float const *, int, int, int, int, int, int, int, int, int, cudnn::reduced_divisor, bool, int2, int, int)
+                 3.93%   4.3538ms      1  4.3538ms  4.3538ms  4.3538ms  void cudnn::detail::pooling_fw_4d_kernel<float, float, cudnn::detail::maxpooling_func<float, cudnnNanPropagation_t=0>, int=0, bool=0>(cudnnTensorStruct, float const *, cudnn::detail::pooling_fw_4d_kernel<float, float, cudnn::detail::maxpooling_func<float, cudnnNanPropagation_t=0>, int=0, bool=0>, cudnnTensorStruct*, cudnnPoolingStruct, float, cudnnPoolingStruct, int, cudnn::reduced_divisor, float)
+...
+API calls:      42.02%   3.11594s     22  141.63ms  13.772us  1.60424s  cudaStreamCreateWithFlags
+                33.18%   2.46098s     24  102.54ms  58.814us  2.44646s  cudaMemGetInfo
+                21.21%   1.57319s     19  82.800ms  1.2310us  421.68ms  cudaFree
+...
